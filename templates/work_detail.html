@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Our Work | Your Brand{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <h1 class="reveal">Selected Projects and Case Studies</h1>
+    <p class="lead reveal">
+      A snapshot of work delivered for clients across different industries.
+    </p>
+  </div>
+</section>
+
+<section class="container section reveal">
+  <p>
+    Each project we take on is driven by a specific business challenge. We focus on
+    understanding the problem first, then designing and building a solution that
+    delivers measurable value.
+  </p>
+
+  <p>
+    Our role often extends beyond development — we collaborate closely with stakeholders
+    to refine requirements, validate ideas, and ensure long-term sustainability.
+  </p>
+</section>
+
+{% include "partials/work.html" %}
+
+<section class="container section reveal">
+  <h2>How We Measure Success</h2>
+  <p>
+    Success is not just about shipping features. We evaluate outcomes based on usability,
+    system stability, scalability, and how well the product supports business operations.
+  </p>
+</section>
+
+{% include "partials/testimonials.html" %}
+{% include "partials/cta.html" %}
+
+{% endblock %}

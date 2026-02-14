@@ -1,0 +1,22 @@
+<section class="newsletter">
+  <div class="container newsletter-box">
+    <h3>Stay in the Loop</h3>
+    <p>
+      Get insights on software, design, and product development.
+      No spam. Just quality updates.
+    </p>
+
+    <form method="post" action="{% url 'newsletter_subscribe' %}">
+      {% csrf_token %}
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter your email address"
+        required
+      >
+      <button type="submit" class="btn primary">
+        Subscribe →
+      </button>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}Contact Us | Best9ja Concepts{% endblock %}
+
+{% block content %}
+<section class="contact-hero">
+  <div class="container">
+    <h1>Let’s Build Something Great</h1>
+    <p>
+      Tell us about your project. We’ll review your request and get back
+      to you within 24 hours.
+    </p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="container contact-grid">
+
+    <!-- LEFT INFO -->
+    <div class="contact-info">
+      <h3>Get in Touch</h3>
+      <p>
+        Whether you’re a startup or an established business, we help
+        teams design, build, and scale reliable software products.
+      </p>
+
+      <ul class="contact-details">
+        <li>
+          <strong>Email</strong>
+          <span>hello@best9ja.com.ng</span>
+        </li>
+        <li>
+          <strong>Location</strong>
+          <span>Africa · Serving Clients Worldwide</span>
+        </li>
+        <li>
+          <strong>Response Time</strong>
+          <span>Within 24 hours (Mon–Fri)</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- FORM -->
+    <form class="contact-form" method="post" action="{% url 'contact' %}">
+      {% csrf_token %}
+
+      <div class="field">
+        <label>Full Name</label>
+        <input type="text" name="name" placeholder="Your full name" required>
+      </div>
+
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="you@example.com" required>
+      </div>
+
+      <div class="field">
+        <label>Project Type</label>
+        <select name="project_type" required>
+          <option value="">Select a service</option>
+          <option>Web Development</option>
+          <option>API / Backend</option>
+          <option>UI / UX Design</option>
+          <option>Automation</option>
+          <option>Consultation</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Message</label>
+        <textarea name="message" rows="5" placeholder="Tell us about your project goals, timeline, and expectations..."
+          required></textarea>
+      </div>
+
+      <button type="submit" class="btn primary">
+        Send Message →
+      </button>
+    </form>
+
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8040884.049128071!2d3.781076774999957!3d10.244404900000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10fd61aa06fa2141%3A0x8445239fbe8afadb!2sBest9ja%20Concepts!5e0!3m2!1sen!2sng!4v1770210074339!5m2!1sen!2sng"
+    width="100%"
+    height="550"
+    style="border:0;"
+    allowfullscreen
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</section>
+
+
+{% endblock %}

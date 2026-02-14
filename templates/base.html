@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Best9ja Concepts{% endblock %}</title>
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+<!-- ================= PRELOADER ================= -->
+<div id="preloader">
+  <div class="loader-content">
+    <div class="loader-logo">BJ</div>
+    <p class="loader-text">Building world-class software</p>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container nav">
+    <a href="{% url 'home' %}" class="brand">
+      <span class="logo">BJ</span>
+      <span>Best9ja <span style="opacity:.65">Concepts.</span></span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="{% url 'services' %}">Services</a>
+      <a href="{% url 'work' %}">Work</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'contact' %}">Contact</a>
+      <a href="{% url 'blog' %}">Blog</a>
+      <a href="{% url 'contact' %}" class="btn small" style="color: rgb(245, 237, 237);">Get a Quote</a>
+    </nav>
+
+    <button class="menu-btn" id="menuBtn">☰</button>
+  </div>
+
+  <div class="mobile-drawer" id="drawer">
+    <a href="{% url 'services' %}">Services</a>
+    <a href="{% url 'work' %}">Work</a>
+    <a href="{% url 'about' %}">About</a>
+    <a href="{% url 'contact' %}">Contact</a>
+    <a href="{% url 'blog' %}">Blog</a>
+    <a href="{% url 'contact' %}" class="btn" style="color: rgb(245, 237, 237);">Get a Quote</a>
+  </div>
+</header>
+{% if messages %}
+<div class="messages">
+  {% for message in messages %}
+    <div class="message {{ message.tags }}">
+      {{ message }}
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+
+<!-- ================= PAGE CONTENT ================= -->
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+
+    <div class="footer-col">
+      <div class="footer-brand">
+        <span class="logo">BJ</span>
+        <h3>Best9ja <span>Concepts</span></h3>
+      </div>
+      <p>
+        We design and build reliable, scalable software for startups,
+        SMEs, and enterprises worldwide.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li>Web Development</li>
+        <li>API Development</li>
+        <li>UI / UX Design</li>
+        <li>Automation</li>
+        <li>Cloud & DevOps</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="{% url 'about' %}">About Us</a></li>
+        <li><a href="{% url 'work' %}">Our Work</a></li>
+        <li><a href="{% url 'blog' %}">Blog</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul class="footer-contact">
+        <li>📍 Africa · Serving Globally</li>
+        <li>
+          <a href="mailto:hello@best9ja.com.ng">
+            hello@best9ja.com.ng
+          </a>
+        </li>
+        <li>
+          <a href="https://wa.me/2347041696102" class="footer-btn">
+            Chat on WhatsApp →
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© <span id="year"></span> Best9ja Concepts. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ================= SCROLL TO TOP ================= -->
+<button id="toTop" class="to-top" aria-label="Scroll to top">↑</button>
+
+<script src="{% static 'js/main.js' %}" defer></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

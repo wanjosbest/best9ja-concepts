@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}About Us | Your Brand{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <h1 class="reveal">A Team Focused on Quality and Reliability</h1>
+    <p class="lead reveal">
+      We build digital products with care, discipline, and long-term thinking.
+    </p>
+  </div>
+</section>
+
+<section class="container section reveal">
+  <h2>Who We Are</h2>
+  <p>
+    We are a team of designers and developers working with businesses to create digital
+    systems that are reliable, maintainable, and aligned with real user needs.
+  </p>
+
+  <p>
+    Our approach emphasizes clarity over complexity and quality over shortcuts.
+  </p>
+</section>
+
+{% include "partials/team.html" %}
+
+<section class="container section reveal">
+  <h2>Our Values</h2>
+
+  <ul class="feature-list">
+    <li>Transparent communication</li>
+    <li>Long-term technical thinking</li>
+    <li>User-centered design</li>
+    <li>Continuous improvement</li>
+  </ul>
+</section>
+
+{% include "partials/testimonials.html" %}
+
+{% endblock %}

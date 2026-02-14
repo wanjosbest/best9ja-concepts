@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Best9ja Concepts{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="hero container" id="home">
+    <div class="orb"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="wrap">
+        <div>
+            <span class="tag">Enterprise • Startups • SMEs</span>
+            <h1>
+                Building <span class="grad">world-class software</span><br />
+                for ambitious brands.
+            </h1>
+            <p>
+                Best9ja Inc. is a software development company crafting reliable web apps,
+                APIs, and automation that scale.
+            </p>
+            <div class="actions">
+                <a class="btn" href="{% url 'contact' %}">Start a Project</a>
+                <a class="btn ghost" href="{% url 'work' %}">See Our Work →</a>
+            </div>
+        </div>
+
+        <div class="reveal">
+            <div class="card" style="padding:0; overflow:hidden">
+                <div class="work-img">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c" loading="lazy" alt="">
+                </div>
+                <div style="padding:1rem">
+                    <h3>Analytics Platform</h3>
+                    <p class="lead">Scalable SaaS dashboard with real-time analytics.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+<section class="trust-marquee">
+  <div class="marquee-track">
+    <span>Django</span>
+    <span>React</span>
+    <span>Next.js</span>
+    <span>PostgreSQL</span>
+    <span>AWS</span>
+    <span>Docker</span>
+    <span>REST APIs</span>
+    <span>UI / UX</span>
+    <span>Automation</span>
+
+    <!-- duplicate for seamless loop -->
+    <span>Django</span>
+    <span>React</span>
+    <span>Next.js</span>
+    <span>PostgreSQL</span>
+    <span>AWS</span>
+    <span>Docker</span>
+    <span>REST APIs</span>
+    <span>UI / UX</span>
+    <span>Automation</span>
+  </div>
+</section>
+
+
+
+{% include "partials/services.html" %}
+{% include "partials/work.html" %}
+{% include "partials/blog.html" %}
+{% include "partials/testimonials.html" %}
+{% include "partials/process.html" %}
+{% include "partials/faq.html" %}
+{% include "partials/team.html" %}
+{% include "partials/newsletter.html" %}
+
+{% endblock %}

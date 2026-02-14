@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Insights | Your Brand{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <h1 class="reveal">Insights from Real Projects</h1>
+    <p class="lead reveal">
+      Practical perspectives on product development, design, and technology.
+    </p>
+  </div>
+</section>
+
+<section class="container section reveal">
+  <p>
+    This blog is where we share lessons learned from real-world projects. Our writing
+    focuses on practical challenges, trade-offs, and decisions that teams face when
+    building and maintaining digital products.
+  </p>
+
+  <p>
+    The content is written for founders, product managers, and technical teams who
+    want a clearer understanding of how successful products are built.
+  </p>
+</section>
+
+{% include "partials/blog.html" %}
+{% include "partials/newsletter.html" %}
+
+{% endblock %}
