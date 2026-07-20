@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Blog | Best9ja Concepts{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container wrap">
+        <div>
+            <span class="tag">Insights & Articles</span>
+            <h1>
+                Our <span class="grad">Blog</span>
+            </h1>
+            <p>
+                Expert insights on web development, APIs, automation,
+                cloud infrastructure, and modern digital solutions.
+            </p>
+        </div>
+    </div>
+
+    <div class="orb"></div>
+    <div class="orb orb-2"></div>
+</section>
+
+
+<!-- BLOG GRID -->
+<section class="section">
+    <div class="container grid grid-3">
+
+        {% for post in blog %}
+        <div class="card">
+
+            {% if post.featured_image %}
+            <img src="{{ post.featured_image.url }}" alt="{{ post.title }}"
+                style="width:100%; border-radius:14px; margin-bottom:1rem;">
+            {% endif %}
+
+            <span class="tag">{{ post.created|date:"M d, Y" }}</span>
+
+            <h3 style="margin-top:10px;">
+                {{ post.title }}
+            </h3>
+
+            <p style="opacity:0.8;">
+                {{ post.content|truncatewords:20 }}
+            </p>
+
+            <div style="margin-top:1rem;">
+                <a href="{% url 'blog_details' post.slug %}" class="btn ghost">
+                    Read More →
+                </a>
+            </div>
+
+        </div>
+        {% empty %}
+        <p>No blog posts yet.</p>
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}

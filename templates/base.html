@@ -24,24 +24,27 @@
 <header class="header">
   <div class="container nav">
     <a href="{% url 'home' %}" class="brand">
-      <span class="logo">BJ</span>
+      <span class="logo"><img src="https://best9ja.com.ng/media/images/best9ja.jpg"></span>
       <span>Best9ja <span style="opacity:.65">Concepts.</span></span>
     </a>
 
     <nav class="nav-links">
-      <a href="{% url 'services' %}">Services</a>
+	  <a href="{% url 'music_index' %}">Music Studio</a>
+      <a href="{% url 'services_list' %}">Services</a>
       <a href="{% url 'work' %}">Work</a>
       <a href="{% url 'about' %}">About</a>
       <a href="{% url 'contact' %}">Contact</a>
       <a href="{% url 'blog' %}">Blog</a>
       <a href="{% url 'contact' %}" class="btn small" style="color: rgb(245, 237, 237);">Get a Quote</a>
     </nav>
+	 
 
     <button class="menu-btn" id="menuBtn">☰</button>
   </div>
 
   <div class="mobile-drawer" id="drawer">
-    <a href="{% url 'services' %}">Services</a>
+    <a href="{% url 'music_index' %}">Music Studio</a>
+    <a href="{% url 'services_list'%}">Services</a>
     <a href="{% url 'work' %}">Work</a>
     <a href="{% url 'about' %}">About</a>
     <a href="{% url 'contact' %}">Contact</a>
@@ -106,7 +109,7 @@
         <li>📍 Africa · Serving Globally</li>
         <li>
           <a href="mailto:hello@best9ja.com.ng">
-            hello@best9ja.com.ng
+            best9jaconcepts@gmail.com
           </a>
         </li>
         <li>

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Create Blog Post{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="container wrap">
+    <div>
+      <span class="tag">Admin Panel</span>
+      <h1>Create <span class="grad">New Post</span></h1>
+    </div>
+  </div>
+  <div class="orb"></div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="card" style="max-width:800px; margin:auto;">
+
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="field">
+          <label>Title</label>
+          <input type="text" name="title" required>
+        </div>
+
+        <div class="field">
+          <label>Content</label>
+          <textarea name="content" rows="8" required></textarea>
+        </div>
+
+        <div class="field">
+          <label>Featured Image</label>
+          <input type="file" name="featured_image">
+        </div>
+
+        <div class="field">
+          <label>Meta Keywords</label>
+          <input type="text" name="meta_keywords">
+        </div>
+
+        <div class="field">
+          <label>Meta Description</label>
+          <textarea name="meta_descriptions" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn">
+          Publish Post →
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

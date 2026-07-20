@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Update {{ service.title }}{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="container wrap">
+        <div>
+            <span class="tag">Admin Panel</span>
+            <h1>
+                Update <span class="grad">Service</span>
+            </h1>
+        </div>
+    </div>
+    <div class="orb"></div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="card" style="max-width:900px;margin:auto;">
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="field">
+                    <label>Title</label>
+                    <input type="text" name="title" value="{{ service.title }}" required>
+                </div>
+
+                <div class="field">
+                    <label>Short Description</label>
+                    <input type="text" name="short_description" value="{{ service.short_description }}" required>
+                </div>
+
+                <div class="field">
+                    <label>Description</label>
+                    <textarea name="description" rows="7" required>{{ service.description }}</textarea>
+                </div>
+
+                <div class="field">
+                    <label>Icon</label>
+                    <input type="text" name="icon" value="{{ service.icon }}">
+                </div>
+
+                <div class="field">
+                    <label>Current Image</label>
+
+                    {% if service.image %}
+                    <div style="margin-bottom:1rem;">
+                        <img src="{{ service.image.url }}"
+                            style="width:100%;max-height:250px;object-fit:cover;border-radius:14px;">
+                    </div>
+                    {% endif %}
+
+                    <input type="file" name="image">
+                </div>
+
+                <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem;">
+                    <button class="btn">Update Service →</button>
+
+                    <a href="{{ service.get_absolute_url }}" class="btn ghost">
+                        Cancel
+                    </a>
+
+                    <a href="{% url 'delete_service' service.slug %}" class="btn" style="background:#b91c1c;">
+                        Delete
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

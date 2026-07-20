@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+  <div class="container wrap">
+    <h1>Create <span class="grad">Service</span></h1>
+  </div>
+  <div class="orb"></div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="card" style="max-width:800px;margin:auto;">
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<div class="field">
+<label>Title</label>
+<input type="text" name="title" required>
+</div>
+
+<div class="field">
+<label>Short Description</label>
+<input type="text" name="short_description" required>
+</div>
+
+<div class="field">
+<label>Description</label>
+<textarea name="description" rows="6" required></textarea>
+</div>
+
+<div class="field">
+<label>Icon (emoji)</label>
+<input type="text" name="icon">
+</div>
+
+<div class="field">
+<label>Image</label>
+<input type="file" name="image">
+</div>
+
+<button class="btn">Create Service →</button>
+
+</form>
+
+</div>
+</div>
+</section>
+
+{% endblock %}

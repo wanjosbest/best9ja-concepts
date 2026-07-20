@@ -3,21 +3,44 @@
         <h2 class="reveal">Selected Work</h2>
 
         <div class="grid grid-3">
-            <article class="card work-card reveal">
-                <div class="work-img">
-                    <img src="https://images.unsplash.com/photo-1557821552-17105176677c" loading="lazy">
-                </div>
-                <h3>Fintech Dashboard</h3>
-                <p class="lead">Real-time financial reporting platform.</p>
-            </article>
 
-            <article class="card work-card reveal">
+            {% for project in projects %}
+            <article class="card work-card project-card reveal">
+
+                {% if project.image %}
                 <div class="work-img">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" loading="lazy">
+                    <img src="{{ project.image.url }}" loading="lazy" alt="{{ project.title }}">
                 </div>
-                <h3>E-commerce Platform</h3>
-                <p class="lead">High-conversion online store.</p>
+                {% endif %}
+
+                <!-- Project Badge -->
+                <div class="project-badge">
+                    Case Study
+                </div>
+
+                <h3>{{ project.title }}</h3>
+
+                <p class="lead">
+                    {{ project.short_description|truncatewords:18 }}
+                </p>
+
+                <a href="{{ project.get_absolute_url }}" class="btn ghost">
+                    View Project →
+                </a>
+
             </article>
+            {% empty %}
+            <p>No projects available yet.</p>
+            {% endfor %}
+
         </div>
+
+        <!-- Bottom CTA -->
+        <div style="text-align:center; margin-top:3rem;">
+            <a href="{% url 'work' %}" class="btn">
+                View All Projects →
+            </a>
+        </div>
+
     </div>
 </section>

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Delete {{ service.title }}{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="container wrap">
+        <div>
+            <span class="tag">Warning</span>
+            <h1>
+                Delete <span class="grad">{{ service.title }}</span>?
+            </h1>
+            <p>This action cannot be undone.</p>
+        </div>
+    </div>
+    <div class="orb"></div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="card" style="max-width:600px;margin:auto;text-align:center;">
+
+            <p style="margin-bottom:2rem; opacity:0.8;">
+                Are you sure you want to permanently delete this service?
+            </p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+                    <button class="btn" style="background:#b91c1c;">
+                        Yes, Delete
+                    </button>
+
+                    <a href="{{ service.get_absolute_url }}" class="btn ghost">
+                        Cancel
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,210 @@
+{% extends "music/music_base.html" %}
+{% load static %}
+
+{% block title %}
+{{ category.name }} Beats | Best9ja Concepts
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="relative overflow-hidden px-6 pt-28 pb-20">
+
+    <!-- BACKGROUND -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#101114] via-[#0F0F12] to-[#0F0F12]"></div>
+
+    <div class="absolute top-[-100px] right-[-100px] w-[350px] h-[350px] bg-green-500/10 blur-[120px] rounded-full">
+    </div>
+
+    <div class="relative z-10 max-w-6xl mx-auto">
+
+        <!-- BREADCRUMB -->
+        <div class="flex items-center gap-2 text-sm text-gray-500 mb-6">
+
+            <a href="{% url 'music_index' %}" class="hover:text-green-500 transition">
+                Home
+            </a>
+
+            <span>/</span>
+
+            <span class="text-green-500">
+                {{ category.name }}
+            </span>
+
+        </div>
+
+        <!-- TITLE -->
+        <div class="max-w-3xl">
+
+            <p class="text-green-500 font-medium mb-3">
+                Genre Collection
+            </p>
+
+            <h1 class="text-4xl md:text-6xl font-black leading-tight mb-5">
+
+                {{ category.name }} Beats
+
+            </h1>
+
+            <p class="text-gray-400 text-lg leading-relaxed">
+                Explore premium {{ category.name }} instrumentals crafted for modern African artists.
+                Find high-quality beats ready for recording, streaming, and performance.
+            </p>
+
+        </div>
+
+        <!-- STATS -->
+        <div class="flex gap-10 mt-12 flex-wrap">
+
+            <div>
+                <h3 class="text-3xl font-bold">
+                    {{ beats.count }}
+                </h3>
+
+                <p class="text-gray-500 text-sm">
+                    Available Beats
+                </p>
+            </div>
+
+            <div>
+                <h3 class="text-3xl font-bold">
+                    Studio
+                </h3>
+
+                <p class="text-gray-500 text-sm">
+                    Quality Production
+                </p>
+            </div>
+
+            <div>
+                <h3 class="text-3xl font-bold">
+                    Instant
+                </h3>
+
+                <p class="text-gray-500 text-sm">
+                    Digital Delivery
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BEATS GRID -->
+<section class="px-6 pb-24">
+
+    <div class="max-w-6xl mx-auto">
+
+        {% if beats %}
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            {% for beat in beats %}
+            <div
+                class="group bg-[#151518] border border-gray-800 rounded-3xl overflow-hidden hover:border-green-500 transition">
+
+                <!-- IMAGE -->
+                <div class="relative">
+
+                    <img src="{{ beat.image.url }}" class="h-48 w-full object-cover" />
+
+                    <!-- PLAY BUTTON -->
+                    <button onclick="playTrack(`{{ beat.title|escapejs }}`, `{{ beat.audio.url }}`)"
+                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+
+                        <div
+                            class="w-16 h-16 bg-green-500 text-black rounded-full flex items-center justify-center text-2xl shadow-2xl">
+                            ▶
+                        </div>
+
+                    </button>
+
+                    <!-- OVERLAY -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+                </div>
+
+                <!-- CONTENT -->
+                <div class="p-5">
+
+                    <div class="flex justify-between items-start gap-4 mb-4">
+
+                        <div>
+
+                            <h3 class="text-xl font-bold mb-1">
+                                {{ beat.title }}
+                            </h3>
+
+                            <p class="text-gray-400 text-sm">
+                                {{ beat.category.name }} • {{ beat.bpm }} BPM
+                            </p>
+
+                        </div>
+
+                        {% if beat.is_featured %}
+                        <span class="bg-green-500 text-black text-xs px-2 py-1 rounded-full font-semibold">
+                            Featured
+                        </span>
+                        {% endif %}
+
+                    </div>
+
+                    <!-- PRICE -->
+                    <div class="flex justify-between items-center">
+
+                        <p class="text-green-500 font-black text-2xl">
+                            ₦{{ beat.price }}
+                        </p>
+
+                        <a href="{% url 'checkout' beat.slug %}"
+                            class="bg-green-500 hover:bg-green-400 transition text-black text-sm px-4 py-2 rounded-xl font-bold">
+
+                            Buy License
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <!-- EMPTY STATE -->
+        <div class="bg-[#151518] border border-gray-800 rounded-[32px] p-12 text-center">
+
+            <div class="text-6xl mb-6">
+                🎵
+            </div>
+
+            <h2 class="text-3xl font-black mb-4">
+                No Beats Available
+            </h2>
+
+            <p class="text-gray-400 mb-8 max-w-xl mx-auto">
+                There are currently no beats in the {{ category.name }} category.
+                Check back soon for fresh releases.
+            </p>
+
+            <a href="{% url 'music_index' %}"
+                class="inline-flex bg-green-500 text-black px-6 py-3 rounded-2xl font-bold">
+
+                Browse All Beats
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

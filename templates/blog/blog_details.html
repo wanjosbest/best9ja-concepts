@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} | Best9ja Concepts{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="container wrap">
+    <div>
+      <span class="tag">{{ post.created|date:"F d, Y" }}</span>
+      <h1>
+        {{ post.title }}
+      </h1>
+      <p>
+        By {{ post.username }} · Best9ja Concepts
+      </p>
+    </div>
+  </div>
+
+  <div class="orb"></div>
+  <div class="orb orb-2"></div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+
+    {% if post.featured_image %}
+      <img src="{{ post.featured_image.url }}"
+           alt="{{ post.title }}"
+           style="width:100%; border-radius:18px; margin-bottom:2rem;">
+    {% endif %}
+
+    <div class="card" style="padding:2rem;">
+      <div style="line-height:1.8; font-size:1.05rem;">
+        {{ post.content|linebreaks }}
+      </div>
+    </div>
+
+    <div style="margin-top:2rem; display:flex; gap:1rem;">
+      <a href="{% url 'blog_list' %}" class="btn ghost">
+        ← Back to Blog
+      </a>
+
+      {% if request.user == post.user %}
+        <a href="{% url 'update_blog_post' post.slug %}" class="btn">
+          Edit Post
+        </a>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

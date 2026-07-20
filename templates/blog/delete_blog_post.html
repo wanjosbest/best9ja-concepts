@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Delete Post{% endblock %}
+
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <div class="card" style="max-width:600px; margin:auto; text-align:center;">
+
+      <h2>Delete Blog Post?</h2>
+      <p>
+        Are you sure you want to delete
+        <strong>{{ post.title }}</strong>?
+      </p>
+
+      <form method="POST">
+        {% csrf_token %}
+        <button class="btn" style="background:#b91c1c;">
+          Yes, Delete
+        </button>
+        <a href="{% url 'blog_list' %}" class="btn ghost">
+          Cancel
+        </a>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

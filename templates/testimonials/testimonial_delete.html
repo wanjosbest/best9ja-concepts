@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Delete Testimonial{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="orb"></div>
+    <div class="orb orb-2"></div>
+    <div class="container wrap">
+        <div>
+            <span class="tag">Admin Panel</span>
+            <h1>Delete <span class="grad">Testimonial</span></h1>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="card" style="max-width:500px; margin:auto; text-align:center;">
+            <p>Are you sure you want to delete this testimonial by <strong>{{ testimonial.name }}</strong>?</p>
+
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn" style="margin-top:1rem;">Yes, Delete →</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

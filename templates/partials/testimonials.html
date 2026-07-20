@@ -2,12 +2,31 @@
     <div class="container">
         <h2 class="reveal">What Our Clients Say</h2>
 
-        <div class="testimonial-grid">
-            <div class="testimonial reveal">
-                <p>"Delivered flawlessly and ahead of schedule."</p>
-                <h4>Jane Doe</h4>
-                <span>CTO, Fintech Co.</span>
-            </div>
+        <div class="grid grid-3">
+
+            {% for testimonial in testimonials %}
+            <article class="card testimonial-card reveal">
+
+                <div class="quote-icon">“</div>
+
+                <p class="lead">
+                    {{ testimonial.message }}
+                </p>
+
+                <div class="client-info">
+                    {% if testimonial.image %}
+                    <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}">
+                    {% endif %}
+
+                    <div>
+                        <h4>{{ testimonial.name }}</h4>
+                        <span>{{ testimonial.position }}, {{ testimonial.company }}</span>
+                    </div>
+                </div>
+
+            </article>
+            {% endfor %}
+
         </div>
     </div>
 </section>

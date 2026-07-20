@@ -1,14 +1,50 @@
 <section id="blog">
     <div class="container">
+
         <h2 class="reveal">Insights & Articles</h2>
-        <p class="lead reveal">Stay updated with our latest thoughts.</p>
+        <p class="lead reveal">
+            Stay updated with our latest thoughts on software, startups and technology.
+        </p>
 
         <div class="grid grid-3">
-            <article class="card reveal blog-card">
-                <h3>Scaling SaaS Platforms</h3>
-                <p class="lead">Tips for building scalable SaaS apps.</p>
-                <a href="#" class="btn ghost">Read More →</a>
+
+            {% for post in posts %}
+            <article class="card blog-card reveal">
+
+                {% if post.featured_image %}
+                <div class="work-img">
+                    <img src="{{ post.featured_image.url }}" loading="lazy" alt="{{ post.title }}">
+                </div>
+                {% endif %}
+
+                <!-- Blog Badge -->
+                <div class="blog-badge">
+                    Article
+                </div>
+
+                <h3>{{ post.title }}</h3>
+
+                <p class="lead">
+                    {{ post.content|truncatewords:20 }}
+                </p>
+
+                <a href="{{ post.get_absolute_url }}" class="btn ghost">
+                    Read More →
+                </a>
+
             </article>
+            {% empty %}
+            <p>No blog posts available yet.</p>
+            {% endfor %}
+
         </div>
+
+        <!-- Bottom CTA -->
+        <div style="text-align:center; margin-top:3rem;">
+            <a href="{% url 'blog_list' %}" class="btn">
+                View All Articles →
+            </a>
+        </div>
+
     </div>
 </section>

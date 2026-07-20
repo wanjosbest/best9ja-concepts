@@ -1,42 +1,92 @@
 {% extends "base.html" %}
-{% block title %}About Us | Your Brand{% endblock %}
+{% load static %}
+{% block title %}About Us | Best9jaConcepts{% endblock %}
 
 {% block content %}
 
+<!-- HERO SECTION -->
 <section class="page-hero">
-  <div class="container">
-    <h1 class="reveal">A Team Focused on Quality and Reliability</h1>
+  <div class="container text-center">
+    <h1 class="reveal">We Build Digital Solutions That Drive Growth</h1>
     <p class="lead reveal">
-      We build digital products with care, discipline, and long-term thinking.
+      At <strong>Best9jaConcepts</strong>, we transform ideas into scalable, high-performing websites and digital
+      products.
     </p>
   </div>
 </section>
 
+<!-- WHO WE ARE -->
 <section class="container section reveal">
-  <h2>Who We Are</h2>
-  <p>
-    We are a team of designers and developers working with businesses to create digital
-    systems that are reliable, maintainable, and aligned with real user needs.
-  </p>
+  <div class="grid-2">
+    <div>
+      <h2>Who We Are</h2>
+      <p>
+        At <strong>Best9jaConcepts</strong>, we don’t just build websites — we create digital experiences that grow
+        businesses.
+        We are a team of expert designers, developers, and strategists passionate about turning ideas into results.
+      </p>
+      <p>
+        We focus on delivering platforms that attract customers, build credibility, and convert visitors into loyal
+        clients.
+        Every project combines modern design, clean code, and strategy to deliver measurable growth.
+      </p>
+    </div>
 
+    <div>
+      <img src="{% static 'images/about.jpg' %}" alt="Our Team" class="rounded shadow">
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="container section reveal">
+  <h2>Our Mission</h2>
   <p>
-    Our approach emphasizes clarity over complexity and quality over shortcuts.
+    Our mission is simple: empower Nigerian businesses with cutting-edge digital solutions that increase revenue,
+    enhance visibility, and build lasting trust with their audience.
+    We turn complex challenges into elegant, easy-to-use solutions that work seamlessly on all devices.
   </p>
 </section>
 
-{% include "partials/team.html" %}
-
+<!-- WHY CHOOSE US -->
 <section class="container section reveal">
-  <h2>Our Values</h2>
-
+  <h2>Why Choose Best9jaConcepts?</h2>
   <ul class="feature-list">
-    <li>Transparent communication</li>
-    <li>Long-term technical thinking</li>
-    <li>User-centered design</li>
-    <li>Continuous improvement</li>
+    <li><strong>Proven Expertise:</strong> We’ve delivered dozens of successful projects across multiple industries.
+    </li>
+    <li><strong>Trusted & Registered:</strong> We are fully registered with the Corporate Affairs Commission (CAC).</li>
+    <li><strong>Client-Centric:</strong> Your goals and audience guide every solution — you’re our partner, not just a
+      client.</li>
+    <li><strong>Fast & Reliable:</strong> We deliver on time without sacrificing quality.</li>
+    <li><strong>Results-Driven:</strong> Your website will convert visitors into paying customers.</li>
   </ul>
 </section>
 
+<!-- CAC CERTIFICATE -->
+<section class="container section reveal">
+  <h2>Our Legal Registration</h2>
+  <p>
+    Best9jaConcepts is a registered company, committed to professionalism and trust.
+    Below is our official CAC certificate for verification.
+  </p>
+  <div class="text-center mt-4">
+    <img src="https://best9ja.com.ng/media/images/cac.jpg" alt="CAC Certificate" class="certificate-img shadow">
+  </div>
+</section>
+
+<!-- TEAM -->
+{% include "partials/team.html" %}
+
+<!-- TESTIMONIALS -->
 {% include "partials/testimonials.html" %}
+
+<!-- CTA -->
+<section class="section text-center bg-dark text-white">
+  <div class="container">
+    <h2>Let’s Build Your Digital Success</h2>
+    <p>Ready to transform your ideas into a website that attracts, engages, and converts?</p>
+    <a href="/contact/" class="btn btn-primary btn-lg">Start Your Project Today</a>
+  </div>
+</section>
 
 {% endblock %}

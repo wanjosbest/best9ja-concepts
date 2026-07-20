@@ -1,0 +1,465 @@
+{% extends "music/music_base.html" %}
+{% load static %}
+
+{% block title %}
+Best9ja Concepts
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden px-5 pt-24 pb-20">
+
+  <div class="absolute inset-0 bg-gradient-to-b from-[#0F0F12] via-[#101114] to-[#0F0F12]"></div>
+
+  <div class="absolute top-[-120px] left-[-120px] w-[400px] h-[400px] bg-green-500/20 blur-[140px] rounded-full"></div>
+
+  <div class="absolute bottom-[-150px] right-[-100px] w-[350px] h-[350px] bg-green-400/10 blur-[120px] rounded-full">
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+
+    <!-- LEFT -->
+    <div>
+
+      <div class="inline-flex items-center gap-2 bg-[#1A1A1D] border border-gray-800 px-4 py-2 rounded-full mb-6">
+        <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+
+        <span class="text-sm text-gray-300">
+          Best9ja Concepts • Music & Creative Services
+        </span>
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-black leading-[1.1] mb-5">
+        Best9ja Concepts
+
+        <span class="block text-green-500 mt-2">
+          The New African Sound
+        </span>
+      </h1>
+
+      <p class="text-gray-400 mb-8">
+        Buy premium Afrobeats instrumentals, promote your music,
+        and access creative services built for modern African artists.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#beats" class="bg-green-500 text-black px-6 py-3 rounded-2xl font-semibold">
+          Explore Beats
+        </a>
+
+        <a href="#contact" class="border border-gray-700 px-6 py-3 rounded-2xl">
+          Promote Your Music
+        </a>
+      </div>
+
+      <div class="flex gap-10 mt-12 flex-wrap">
+
+        <div>
+          <h3 class="text-3xl font-bold">
+            {{ beats.count }}+
+          </h3>
+
+          <p class="text-gray-500 text-sm">
+            Premium Beats
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-3xl font-bold">
+            1K+
+          </h3>
+
+          <p class="text-gray-500 text-sm">
+            Artists Reached
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-3xl font-bold">
+            24/7
+          </h3>
+
+          <p class="text-gray-500 text-sm">
+            Creative Support
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    {% if featured_beats %}
+    {% with beat=featured_beats.0 %}
+
+    <div class="relative">
+
+      <div class="bg-[#151518]/70 backdrop-blur-xl border border-gray-800 rounded-[32px] p-5">
+
+        <div class="relative overflow-hidden rounded-2xl mb-5">
+
+          <img src="{{ beat.image.url }}" class="w-full h-[180px] sm:h-[240px] md:h-[350px] object-cover" />
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+          <button onclick="playTrack('{{ beat.title }}', '{{ beat.audio.url }}')"
+            class="absolute inset-0 flex items-center justify-center">
+
+            <div class="w-16 h-16 bg-green-500/90 text-black text-3xl flex items-center justify-center rounded-full">
+              ▶
+            </div>
+
+          </button>
+
+        </div>
+
+        <div class="flex justify-between items-center">
+
+          <div>
+
+            <h3 class="text-xl font-semibold">
+              {{ beat.title }}
+            </h3>
+
+            <p class="text-gray-400 text-sm">
+              Best9ja Concepts Exclusive
+            </p>
+
+          </div>
+
+          <div class="text-right">
+
+            <p class="text-green-500 font-bold text-xl">
+              ₦{{ beat.price }}
+            </p>
+
+            <p class="text-gray-500 text-sm">
+              Exclusive License
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div
+        class="absolute -bottom-6 -left-2 md:-bottom-8 md:-left-8 bg-[#18181B] border border-gray-800 rounded-2xl px-5 py-4">
+
+        <p class="text-sm text-gray-400">
+          Trusted By Emerging Artists
+        </p>
+
+        <h4 class="font-bold text-lg">
+          {{ beat.category.name }}
+        </h4>
+
+      </div>
+
+    </div>
+
+    {% endwith %}
+    {% endif %}
+
+  </div>
+
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="px-6 py-20">
+
+  <div class="text-center mb-14">
+
+    <p class="text-green-500 mb-3 font-medium">
+      Creative Services
+    </p>
+
+    <h2 class="text-3xl md:text-5xl font-black mb-4">
+      Everything Artists Need
+    </h2>
+
+    <p class="text-gray-400 max-w-2xl mx-auto">
+      Best9ja Concepts helps upcoming and professional artists
+      with premium sound, promotion, branding, and music services.
+    </p>
+
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-6">
+
+    <div class="bg-[#151518] border border-gray-800 rounded-3xl p-6 md:p-8 hover:border-green-500 transition">
+
+      <div class="text-4xl mb-4">🎵</div>
+
+      <h3 class="text-xl font-bold mb-2">
+        Beat Leasing
+      </h3>
+
+      <p class="text-gray-400 text-sm leading-relaxed">
+        Get access to premium Afrobeats, Drill, Trap, and Amapiano instrumentals.
+      </p>
+
+    </div>
+
+    <div class="bg-[#151518] border border-gray-800 rounded-3xl p-6 md:p-8 hover:border-green-500 transition">
+
+      <div class="text-4xl mb-4">🚀</div>
+
+      <h3 class="text-xl font-bold mb-2">
+        Music Promotion
+      </h3>
+
+      <p class="text-gray-400 text-sm leading-relaxed">
+        Promote your songs across blogs, playlists, and social platforms.
+      </p>
+
+    </div>
+
+    <div class="bg-[#151518] border border-gray-800 rounded-3xl p-6 md:p-8 hover:border-green-500 transition">
+
+      <div class="text-4xl mb-4">🎚</div>
+
+      <h3 class="text-xl font-bold mb-2">
+        Mixing & Mastering
+      </h3>
+
+      <p class="text-gray-400 text-sm leading-relaxed">
+        Professional audio engineering with streaming-ready sound quality.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- BEATS -->
+<section id="beats" class="px-6 py-20">
+
+  <div class="text-center mb-12">
+
+    <p class="text-green-500 mb-3 font-medium">
+      Beats Store
+    </p>
+
+    <h2 class="text-3xl md:text-5xl font-black mb-4">
+      Premium Afro Beats for Artists
+    </h2>
+
+    <p class="text-gray-400 max-w-2xl mx-auto">
+      Listen, preview, and purchase high-quality instrumentals.
+    </p>
+
+  </div>
+
+
+  <!-- CATEGORIES -->
+  <div class="flex flex-wrap justify-center gap-3 mb-10">
+
+    <button class="px-4 py-2 bg-green-500 text-black rounded-full text-sm font-semibold">
+      All Beats
+    </button>
+
+    {% for category in categories %}
+    <a href="{% url 'category_beats' category.pk %}"
+      class="px-4 py-2 bg-[#151518] border border-gray-700 rounded-full text-sm hover:border-green-500 transition">
+
+      {{ category.name }}
+
+    </a>
+    {% endfor %}
+
+  </div>
+
+  <!-- BEATS GRID -->
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    {% for beat in beats %}
+    <div
+      class="group bg-[#151518] border border-gray-800 rounded-3xl overflow-hidden hover:border-green-500 transition">
+
+      <div class="relative">
+
+        <img src="{{ beat.image.url }}" class="h-40 sm:h-44 w-full object-cover" />
+
+        <button onclick="playTrack('{{ beat.title }}', '{{ beat.audio.url }}')"
+          class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+
+          <div class="w-14 h-14 bg-green-500 text-black rounded-full flex items-center justify-center text-xl">
+            ▶
+          </div>
+
+        </button>
+
+      </div>
+
+      <div class="p-4">
+
+        <h3 class="font-semibold text-lg">
+          {{ beat.title }}
+        </h3>
+
+        <p class="text-gray-400 text-sm">
+          {{ beat.category.name }} • {{ beat.bpm }} BPM
+        </p>
+
+        <div class="flex justify-between items-center mt-4">
+
+          <p class="text-green-500 font-bold">
+            ₦{{ beat.price }}
+          </p>
+
+          <a href="{% url 'checkout' beat.slug %}"
+            class="text-xs bg-green-500 text-black px-3 py-1 rounded-lg font-semibold">
+            Buy License
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+    {% endfor %}
+
+  </div>
+
+</section>
+
+<section id="why-us" class="px-6 py-20 bg-[#141417]">
+
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+
+    <!-- LEFT -->
+    <div>
+
+      <p class="text-green-500 mb-3">Why Artists Choose Us</p>
+
+      <h2 class="text-3xl md:text-5xl font-black leading-tight mb-6">
+        Built For <span class="text-green-500">Modern African Creators</span>
+      </h2>
+
+      <p class="text-gray-400 leading-relaxed mb-8">
+        We combine music production, branding, promotion, and digital strategy
+        to help upcoming artists grow faster and sound industry-ready.
+      </p>
+
+      <div class="space-y-6">
+
+        <!-- POINT 1 -->
+        <div class="flex gap-4 items-start">
+          <div class="text-green-500 text-2xl leading-none">✓</div>
+          <div>
+            <h4 class="font-semibold">Instant Beat Delivery</h4>
+            <p class="text-gray-400 text-sm">
+              Download purchased beats immediately after payment with no delay.
+            </p>
+          </div>
+        </div>
+
+        <!-- POINT 2 -->
+        <div class="flex gap-4 items-start">
+          <div class="text-green-500 text-2xl leading-none">✓</div>
+          <div>
+            <h4 class="font-semibold">Professional Sound Quality</h4>
+            <p class="text-gray-400 text-sm">
+              Industry-standard mixing and mastering for streaming platforms like Spotify and Apple Music.
+            </p>
+          </div>
+        </div>
+
+        <!-- POINT 3 -->
+        <div class="flex gap-4 items-start">
+          <div class="text-green-500 text-2xl leading-none">✓</div>
+          <div>
+            <h4 class="font-semibold">Artist Growth Support</h4>
+            <p class="text-gray-400 text-sm">
+              Promotion, branding, and guidance to help you build a strong music career.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="relative">
+
+      <div class="absolute inset-0 bg-green-500/10 blur-[120px] rounded-full"></div>
+
+      <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81"
+        class="relative rounded-[32px] border border-gray-800 w-full object-cover h-[260px] sm:h-[320px] md:h-auto" />
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="px-6 py-20">
+
+  <div class="text-center mb-14">
+
+    <p class="text-green-500 mb-3">
+      Testimonials
+    </p>
+
+    <h2 class="text-3xl md:text-5xl font-black">
+      Trusted By Artists
+    </h2>
+
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-6">
+
+    {% for testimonial in testimonials %}
+    <div class="bg-[#151518] border border-gray-800 rounded-3xl p-6 md:p-8">
+
+      <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+        "{{ testimonial.message }}"
+      </p>
+
+      <div class="mt-6">
+
+        <h4 class="font-semibold">
+          {{ testimonial.name }}
+        </h4>
+
+        <p class="text-gray-500 text-sm">
+          {{ testimonial.role }}
+        </p>
+
+      </div>
+
+    </div>
+    {% endfor %}
+
+  </div>
+
+</section>
+
+<section id="contact" class="px-6 pb-24">
+
+  <div class="bg-gradient-to-r from-green-500 to-green-400 rounded-[40px] p-6 md:p-16 text-black">
+
+    <h2 class="text-3xl md:text-6xl font-black mb-6">
+      Ready To Level Up Your Sound?
+    </h2>
+
+    <div class="flex gap-4 flex-wrap">
+      <button class="bg-black text-white px-6 py-3 rounded-2xl">
+        Browse Beats
+      </button>
+
+      <button class="border border-black px-6 py-3 rounded-2xl">
+        Contact Us
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}

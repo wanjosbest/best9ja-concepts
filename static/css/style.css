@@ -1320,3 +1320,357 @@ pointer-events: all;
   opacity: .4;
 }
 
+
+/* ================= FORM STYLING ================= */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.4rem;
+}
+
+.field label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: rgba(255,255,255,0.85);
+}
+
+/* INPUT + TEXTAREA */
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+
+/* TEXTAREA SPECIFIC */
+.field textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+/* PLACEHOLDER */
+.field input::placeholder,
+.field textarea::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+
+/* HOVER EFFECT */
+.field input:hover,
+.field textarea:hover {
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* FOCUS EFFECT */
+.field input:focus,
+.field textarea:focus {
+  border-color: #6366f1;
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.25);
+}
+
+/* FILE INPUT */
+.field input[type="file"] {
+  padding: 0.6rem;
+  background: rgba(255,255,255,0.03);
+  cursor: pointer;
+}
+
+/* BUTTON IMPROVEMENT */
+.btn {
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99,102,241,0.35);
+}
+
+
+/* Service card upgrade */
+.service-card {
+    position: relative;
+    transition: 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(99,102,241,0.15);
+    border-color: rgba(99,102,241,0.4);
+}
+
+/* Icon badge */
+.service-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+/* Make cards balanced */
+.work-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.work-card .btn {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* Project Card Upgrade */
+.project-card {
+    position: relative;
+    transition: 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 60px rgba(99,102,241,0.18);
+    border-color: rgba(99,102,241,0.5);
+}
+
+/* Badge */
+.project-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, #10b981, #3b82f6);
+    color: white;
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+/* Keep button aligned */
+.work-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.work-card .btn {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* Blog card upgrade */
+.blog-card {
+    position: relative;
+    transition: 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(139,92,246,0.18);
+    border-color: rgba(139,92,246,0.5);
+}
+
+/* Blog badge */
+.blog-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    color: white;
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+/* Keep consistent layout */
+.blog-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.blog-card .btn {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* Default ghost button fix */
+.btn.ghost {
+    background: transparent;
+    color: #6366f1; /* Indigo */
+    border: 1px solid #6366f1;
+}
+
+/* Hover effect */
+.btn.ghost:hover {
+    background: #6366f1;
+    color: white;
+}
+
+/* Testimonial card */
+.testimonial-card {
+    padding: 2rem;
+    transition: 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(16,185,129,0.15);
+    border-color: rgba(16,185,129,0.4);
+}
+
+/* Big quote mark */
+.quote-icon {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #10b981;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+/* Client section */
+.client-info {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.client-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.client-info h4 {
+    margin: 0;
+}
+
+.client-info span {
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+/* Process section */
+.steps .step {
+    position: relative;
+    padding: 2rem;
+    transition: 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.steps .step:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(99,102,241,0.15);
+    border-color: rgba(99,102,241,0.4);
+}
+
+/* Step number */
+.step-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #6366f1;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+/* Center text */
+.steps .step h3 {
+    margin-bottom: 0.8rem;
+}
+
+.steps .step p {
+    opacity: 0.75;
+    line-height: 1.6;
+}
+
+/* FAQ GRID - 4 columns */
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .faq-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* FAQ card */
+.faq-card {
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.faq-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(99,102,241,0.4);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-toggle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #6366f1;
+    transition: 0.3s ease;
+}
+
+/* Hidden answer */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    opacity: 0;
+}
+
+.faq-card.active .faq-answer {
+    max-height: 200px;
+    margin-top: 1rem;
+    opacity: 0.8;
+}
+
+.faq-card.active .faq-toggle {
+    transform: rotate(45deg);
+}

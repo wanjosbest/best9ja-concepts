@@ -1,0 +1,311 @@
+<!-- templates/musicstudio/musicbase.html -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        {% block title %}
+        Best9ja Concepts
+        {% endblock %}
+    </title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://unpkg.com/wavesurfer.js@6.6.4/dist/wavesurfer.min.js"></script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+
+</head>
+
+<body id="home" class="bg-[#0F0F12] text-white pb-28 overflow-x-hidden">
+
+    <!-- NAVBAR -->
+    <nav
+        class="sticky top-0 z-50 backdrop-blur bg-[#0F0F12]/80 flex justify-between items-center p-4 border-b border-gray-800">
+
+        <h1 class="text-xl font-bold">
+            <a href="{% url 'music_index' %}">
+                Best9ja Concepts
+            </a>
+        </h1>
+
+        <div class="space-x-6 hidden md:block text-sm">
+
+            <a href="{% url 'music_index' %}" class="hover:text-green-500">
+                Home
+            </a>
+
+            <a href="{% url 'music_index'  %}#services" class="hover:text-green-500">
+                Services
+            </a>
+
+            <a href="{% url 'music_index' %}#beats" class="hover:text-green-500">
+                Beats Store
+            </a>
+
+            <a href="{% url 'music_index' %}#why-us" class="hover:text-green-500">
+                Why Us
+            </a>
+
+            <a href="{% url 'music_index' %}#testimonials" class="hover:text-green-500">
+                Testimonials
+            </a>
+
+            <a href="{% url 'music_index' %}#contact" class="hover:text-green-500">
+                Contact
+            </a>
+
+        </div>
+
+        <input id="searchInput" placeholder="Search beats..."
+            class="hidden md:block bg-[#1A1A1D] px-3 py-1 rounded-lg text-sm outline-none" />
+
+        <button id="menuBtn" class="md:hidden text-2xl">
+            ☰
+        </button>
+
+    </nav>
+
+    <!-- BACKDROP -->
+    <div id="backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition z-40">
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu"
+        class="fixed top-0 right-0 h-full w-[80%] max-w-[320px] bg-[#121214] border-l border-gray-800 transform translate-x-full transition z-50 p-6 flex flex-col gap-6">
+
+        <h2 class="text-xl font-bold">
+            Menu
+        </h2>
+
+        <a href="{% url 'music_index' %}#home" class="hover:text-green-500">
+            Home
+        </a>
+
+        <a href="{% url 'music_index' %}#services" class="hover:text-green-500">
+            Services
+        </a>
+
+        <a href="{% url 'music_index' %}#beats" class="hover:text-green-500">
+            Beats Store
+        </a>
+
+        <a href="{% url 'music_index' %}#why-us" class="hover:text-green-500">
+            Why Us
+        </a>
+
+        <a href="{% url 'music_index' %}#testimonials" class="hover:text-green-500">
+            Testimonials
+        </a>
+
+        <a href="{% url 'music_index' %}#contact" class="hover:text-green-500">
+            Contact
+        </a>
+
+    </div>
+
+    <!-- PAGE CONTENT -->
+    {% block content %}
+    {% endblock %}
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button id="toTopBtn"
+        class="fixed bottom-24 right-4 bg-green-500 text-black px-4 py-3 rounded-full shadow-lg z-[9999] opacity-0 pointer-events-none transition">
+        ↑
+    </button>
+
+    <!-- PLAYER -->
+    <div id="player"
+        class="fixed bottom-0 left-0 right-0 z-50 bg-[#121214] border-t border-gray-800 px-3 py-2 flex items-center gap-3 md:gap-6">
+
+        <div class="w-1/3 min-w-[120px]">
+
+            <p id="nowPlaying" class="text-xs font-semibold truncate">
+                No track selected
+            </p>
+
+            <p id="time" class="text-[10px] text-gray-400">
+                0:00 / 0:00
+            </p>
+
+        </div>
+
+        <div class="flex items-center gap-3">
+
+            <button id="playBtn" onclick="togglePlay()"
+                class="bg-green-500 text-black px-4 py-1 rounded-full text-sm font-bold">
+                ▶
+            </button>
+
+        </div>
+
+        <div class="flex-1 h-10 cursor-pointer" id="waveform"></div>
+
+        <div class="w-[80px] md:w-[120px]">
+
+            <input id="volume" type="range" min="0" max="1" step="0.01" class="w-full accent-green-500" />
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // ✅ STABLE WAVESURFER VERSION REQUIRED (make sure you changed CDN)
+        const wavesurfer = WaveSurfer.create({
+            container: "#waveform",
+            waveColor: "#333",
+            progressColor: "#22c55e",
+            cursorColor: "#22c55e",
+            height: 35,
+            responsive: true,
+            barWidth: 2,
+            barGap: 2,
+            barRadius: 2,
+        });
+
+        const nowPlaying = document.getElementById("nowPlaying");
+        const playBtn = document.getElementById("playBtn");
+        const volume = document.getElementById("volume");
+        const timeEl = document.getElementById("time");
+
+        const backdrop = document.getElementById("backdrop");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const menuBtn = document.getElementById("menuBtn");
+
+        let currentTrack = null;
+
+        // ----------------------------
+        // 🎵 PLAY TRACK FUNCTION
+        // ----------------------------
+        function playTrack(title, file) {
+
+            // If same track → toggle play/pause
+            if (currentTrack === file && wavesurfer.getDuration()) {
+                wavesurfer.playPause();
+                return;
+            }
+
+            currentTrack = file;
+
+            nowPlaying.textContent = "Loading...";
+
+            wavesurfer.stop();
+            wavesurfer.load(file);
+
+            wavesurfer.once("ready", () => {
+                nowPlaying.textContent = title;
+                wavesurfer.play();
+            });
+
+            wavesurfer.once("error", (err) => {
+                console.log("Audio load error:", err);
+                nowPlaying.textContent = "Audio failed to load";
+            });
+        }
+
+        // ----------------------------
+        // ▶️ PLAY / PAUSE BUTTON
+        // ----------------------------
+        function togglePlay() {
+            if (!wavesurfer.getDuration()) return;
+            wavesurfer.playPause();
+        }
+
+        playBtn.onclick = togglePlay;
+
+        wavesurfer.on("play", () => {
+            playBtn.textContent = "⏸";
+        });
+
+        wavesurfer.on("pause", () => {
+            playBtn.textContent = "▶";
+        });
+
+        // ----------------------------
+        // 🔊 VOLUME CONTROL
+        // ----------------------------
+        volume.value = 0.8;
+        wavesurfer.setVolume(0.8);
+
+        volume.addEventListener("input", () => {
+            wavesurfer.setVolume(volume.value);
+        });
+
+        // ----------------------------
+        // ⏱ TIME DISPLAY
+        // ----------------------------
+        function formatTime(sec) {
+            if (!sec) return "0:00";
+            const m = Math.floor(sec / 60);
+            const s = Math.floor(sec % 60).toString().padStart(2, "0");
+            return `${m}:${s}`;
+        }
+
+        wavesurfer.on("audioprocess", () => {
+            if (!timeEl) return;
+
+            const current = wavesurfer.getCurrentTime();
+            const duration = wavesurfer.getDuration();
+
+            timeEl.textContent = `${formatTime(current)} / ${formatTime(duration)}`;
+        });
+
+        wavesurfer.on("ready", () => {
+            const duration = wavesurfer.getDuration();
+            if (timeEl) {
+                timeEl.textContent = `0:00 / ${formatTime(duration)}`;
+            }
+        });
+
+        // ----------------------------
+        // 📱 MOBILE MENU
+        // ----------------------------
+        menuBtn.onclick = () => {
+            mobileMenu.classList.toggle("translate-x-full");
+            backdrop.classList.toggle("opacity-0");
+            backdrop.classList.toggle("pointer-events-none");
+        };
+
+        backdrop.onclick = () => {
+            mobileMenu.classList.add("translate-x-full");
+            backdrop.classList.add("opacity-0");
+            backdrop.classList.add("pointer-events-none");
+        };
+
+
+        // scroll detection
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 400) {
+                toTopBtn.classList.remove("opacity-0", "pointer-events-none");
+            } else {
+                toTopBtn.classList.add("opacity-0", "pointer-events-none");
+            }
+        });
+
+        // click action
+        toTopBtn.onclick = () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+    </script>
+
+
+    {% block extra_js %}{% endblock %}
+
+</body>
+
+</html>

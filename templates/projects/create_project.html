@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Create Project{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="container wrap">
+    <div>
+      <span class="tag">Admin Panel</span>
+      <h1>Create <span class="grad">New Project</span></h1>
+    </div>
+  </div>
+  <div class="orb"></div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="card" style="max-width:900px;margin:auto;">
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<div class="field">
+<label>Title</label>
+<input type="text" name="title" required>
+</div>
+
+<div class="field">
+<label>Client Name</label>
+<input type="text" name="client_name">
+</div>
+
+<div class="field">
+<label>Short Description</label>
+<input type="text" name="short_description" required>
+</div>
+
+<div class="field">
+<label>Full Description</label>
+<textarea name="description" rows="7" required></textarea>
+</div>
+
+<div class="field">
+<label>Technologies</label>
+<input type="text" name="technologies" placeholder="Django, React, AWS">
+</div>
+
+<div class="field">
+<label>Live URL</label>
+<input type="url" name="live_url">
+</div>
+
+<div class="field">
+<label>Featured Image</label>
+<input type="file" name="image">
+</div>
+
+<button class="btn">Create Project →</button>
+
+</form>
+
+</div>
+</div>
+</section>
+
+{% endblock %}

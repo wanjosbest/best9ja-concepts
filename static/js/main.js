@@ -103,3 +103,20 @@ if (toTop) {
 })();
 
 
+
+document.querySelectorAll(".faq-card").forEach(card => {
+    card.addEventListener("click", () => {
+
+        // Close all others
+        document.querySelectorAll(".faq-card").forEach(c => {
+            if (c !== card) {
+                c.classList.remove("active");
+            }
+        });
+
+        // Toggle current
+        card.classList.toggle("active");
+    });
+});
+
+

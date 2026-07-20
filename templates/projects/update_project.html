@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Update {{ project.title }}{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="container wrap">
+    <h1>Update <span class="grad">Project</span></h1>
+  </div>
+  <div class="orb"></div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="card" style="max-width:900px;margin:auto;">
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<div class="field">
+<label>Title</label>
+<input type="text" name="title" value="{{ project.title }}">
+</div>
+
+<div class="field">
+<label>Client Name</label>
+<input type="text" name="client_name" value="{{ project.client_name }}">
+</div>
+
+<div class="field">
+<label>Short Description</label>
+<input type="text" name="short_description" value="{{ project.short_description }}">
+</div>
+
+<div class="field">
+<label>Description</label>
+<textarea name="description" rows="7">{{ project.description }}</textarea>
+</div>
+
+<div class="field">
+<label>Technologies</label>
+<input type="text" name="technologies" value="{{ project.technologies }}">
+</div>
+
+<div class="field">
+<label>Live URL</label>
+<input type="url" name="live_url" value="{{ project.live_url }}">
+</div>
+
+<div class="field">
+<label>Current Image</label>
+{% if project.image %}
+<img src="{{ project.image.url }}"
+     style="width:100%; max-height:250px; object-fit:cover; border-radius:14px; margin-bottom:1rem;">
+{% endif %}
+<input type="file" name="image">
+</div>
+
+<div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem;">
+<button class="btn">Update →</button>
+
+<a href="{{ project.get_absolute_url }}" class="btn ghost">
+Cancel
+</a>
+
+<a href="{% url 'delete_project' project.slug %}"
+   class="btn"
+   style="background:#b91c1c;">
+Delete
+</a>
+</div>
+
+</form>
+
+</div>
+</div>
+</section>
+
+{% endblock %}

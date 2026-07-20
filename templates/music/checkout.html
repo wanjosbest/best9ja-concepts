@@ -1,0 +1,50 @@
+{% extends "music/music_base.html" %}
+{% load static %}
+
+{% block title %}
+Checkout - {{ beat.title }}
+{% endblock %}
+
+{% block content %}
+
+<section class="px-6 py-24 min-h-screen flex items-center justify-center">
+
+    <div class="bg-[#151518] border border-gray-800 rounded-3xl p-8 w-full max-w-xl">
+
+        <!-- BEAT INFO -->
+        <div class="mb-6">
+            <h2 class="text-2xl font-bold mb-2">
+                {{ beat.title }}
+            </h2>
+
+            <p class="text-gray-400 text-sm">
+                Category: {{ beat.category.name }} • {{ beat.bpm }} BPM
+            </p>
+
+            <p class="text-green-500 font-bold text-xl mt-3">
+                ₦{{ beat.price }}
+            </p>
+        </div>
+
+        <!-- FORM -->
+        <form method="POST" class="space-y-4">
+            {% csrf_token %}
+
+            <input type="email" name="email" placeholder="Enter your email"
+                class="w-full p-3 rounded-lg bg-[#0F0F12] border border-gray-700 text-white" required />
+
+            <label class="flex items-center gap-2 text-sm text-gray-300">
+                <input type="checkbox" name="subscribe" checked>
+                Get updates & new beats via email
+            </label>
+
+            <button type="submit" class="w-full bg-green-500 text-black font-semibold py-3 rounded-xl">
+                Continue to Payment
+            </button>
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

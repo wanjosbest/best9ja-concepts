@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Our Work | Best9ja Concepts{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="container wrap">
+        <div>
+            <span class="tag">Completed Work</span>
+            <h1>Our <span class="grad">Recent Projects</span></h1>
+            <p>Solutions we've built for ambitious brands.</p>
+            <a href="{% url 'create_project' %}" class="btn">
+                + Add Project
+            </a>
+        </div>
+    </div>
+    <div class="orb"></div>
+    <div class="orb orb-2"></div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <div class="grid grid-3">
+            {% for project in projects %}
+            <div class="card reveal">
+
+                {% if project.image %}
+                <div style="margin-bottom:1rem;">
+                    <img src="{{ project.image.url }}"
+                        style="width:100%;height:200px;object-fit:cover;border-radius:14px;">
+                </div>
+                {% endif %}
+
+                <h3>{{ project.title }}</h3>
+                <p class="lead">{{ project.short_description }}</p>
+
+                <div style="margin-top:1rem;">
+                    <a href="{{ project.get_absolute_url }}" class="btn ghost">
+                        View Project →
+                    </a>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

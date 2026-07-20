@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Testimonials{% endblock %}
+
+{% block content %}
+
+<section class="hero container">
+  <div class="orb"></div>
+  <div class="orb orb-2"></div>
+  <div class="wrap">
+    <div>
+      <span class="tag">Client Feedback</span>
+      <h1>What Our <span class="grad">Clients Say</span></h1>
+      <p>Read the experiences of clients who trusted us for their projects.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">
+      {% for testimonial in testimonials %}
+      <div class="card reveal testimonial">
+        {% if testimonial.image %}
+        <div class="client-img">
+          <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}">
+        </div>
+        {% endif %}
+        <p>"{{ testimonial.message }}"</p>
+        <h4>{{ testimonial.name }}</h4>
+        <span>{{ testimonial.position }}, {{ testimonial.company }}</span>
+      </div>
+      {% empty %}
+      <p>No testimonials yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}
